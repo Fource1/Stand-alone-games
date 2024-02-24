@@ -1,0 +1,26 @@
+import random
+
+class MahjongGame:
+    def __init__(self):
+        self.tiles = ['1万', '2万', '3万', '4万', '5万', '6万', '7万', '8万', '9万',
+                      '1饼', '2饼', '3饼', '4饼', '5饼', '6饼', '7饼', '8饼', '9饼',
+                      '1条', '2条', '3条', '4条', '5条', '6条', '7条', '8条', '9条',
+                      '东风', '南风', '西风', '北风', '红中', '白板', '发财']
+        self.shuffle_tiles()
+
+    def shuffle_tiles(self):
+        random.shuffle(self.tiles)
+
+    def deal_tiles(self, num_players, num_tiles):
+        hands = [[] for _ in range(num_players)]
+        for _ in range(num_tiles):
+            for i in range(num_players):
+                hands[i].append(self.tiles.pop())
+        return hands
+
+# Example usage
+if __name__ == "__main__":
+    game = MahjongGame()
+    hands = game.deal_tiles(num_players=4, num_tiles=13)
+    for i, hand in enumerate(hands):
+        print(f"Player {i+1}'s hand:", hand)
